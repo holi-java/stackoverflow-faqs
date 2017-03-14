@@ -6,6 +6,7 @@
     "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "declaration": true,
     "sourceMap": false,
     "outDir": "build"
   },

@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest @.*?[.]test[.]tsx?$",
     "test:all": "jest [.]test[.]tsx?$ | exit 0",
-    "clean": "rm ./build -rf"
+    "clean": "rm ./build -rf",
+    "tsc": "npm run clean & tsc"
   },
   "keywords": [
     "stackoverflow",
