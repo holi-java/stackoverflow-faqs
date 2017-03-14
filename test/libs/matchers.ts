@@ -23,7 +23,7 @@ export interface Matchers {
 }
 export interface Matcher<T> {
     readonly description: string;
-    test(item: any): boolean;
+    test(item: T): boolean;
 }
 
 namespace matchers {
