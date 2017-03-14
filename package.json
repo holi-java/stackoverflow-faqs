@@ -4,7 +4,7 @@
   "description": "answers of the site http://www.stackoverflow.com",
   "scripts": {
     "test": "jest @.*?[.]test[.]tsx?$",
-    "test:all": "jest | exit 0"
+    "test:all": "jest [.]test[.]tsx?$ | exit 0"
   },
   "keywords": [
     "stackoverflow",
@@ -15,7 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^19.2.1",
+    "@types/reflect-metadata": "0.0.5",
     "jest": "^19.0.2",
+    "reflect-metadata": "^0.1.10",
     "ts-jest": "19.0.0",
     "typescript": "2.2.1"
   },
@@ -24,7 +26,7 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/bootstrap",
-    "testRegex": "[.]test[.]tsx?$",
+    "testRegex": "[.]test[.](tsx?|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
