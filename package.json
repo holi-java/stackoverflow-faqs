@@ -4,7 +4,8 @@
   "description": "answers of the site http://www.stackoverflow.com",
   "scripts": {
     "test": "jest @.*?[.]test[.]tsx?$",
-    "test:all": "jest [.]test[.]tsx?$ | exit 0"
+    "test:all": "jest [.]test[.]tsx?$ | exit 0",
+    "clean": "rm ./build -rf"
   },
   "keywords": [
     "stackoverflow",
