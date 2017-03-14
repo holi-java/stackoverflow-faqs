@@ -3,42 +3,15 @@ issue("Can't get the Reflect metadata correctly in .ts files of the primitive ty
 
 import 'reflect-metadata';
 import 'core-js/es7/reflect';
+import matchers, {Matcher} from './libs/matchers';
+const DeclaredType = matchers();
 
-class Condition {
-    constructor(readonly value: any, readonly match: boolean) {
-    }
-
-    test(that: any): boolean {
-        return (this.value == that) == this.match;
-    }
-}
-class DeclaredType {
-    static get not() {
-        return this.matcher().not;
-    }
-
-    static matcher(condition: boolean = true) {
-        return {
-            get not() {
-                return DeclaredType.matcher(!condition)
-            },
-            is(value: any){
-                return new Condition(value, condition);
-            }
-        };
-    }
-
-    static is(expectedType: any): Condition {
-        return this.matcher().is(expectedType);
-    }
-}
-
-function Test(matcher: Condition) {
+function Test(matcher: Matcher<any>) {
 
     return function (target: any, key: string): void {
         let type = Reflect.getOwnMetadata('design:type', target, key);
 
-        test(`${target.constructor.name} ${key}'s type should be \`${matcher.value.name}\`!`, () => {
+        test(`${target.constructor.name} ${key}'s type should ${matcher.description}!`, () => {
             expect(matcher.test(type)).toBe(true);
         });
     }
