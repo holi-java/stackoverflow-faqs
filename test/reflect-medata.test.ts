@@ -6,13 +6,13 @@ import 'core-js/es7/reflect';
 import matchers, {Matcher} from './libs/matchers';
 const DeclaredType = matchers();
 
-function Test(matcher: Matcher<any>) {
+function Test(typeMatcher: Matcher<any>) {
 
     return function (target: any, key: string): void {
         let type = Reflect.getOwnMetadata('design:type', target, key);
 
-        test(`${target.constructor.name} ${key}'s type should ${matcher.description}!`, () => {
-            expect(matcher.test(type)).toBe(true);
+        test(`${target.constructor.name} ${key}'s type should ${typeMatcher.description}!`, () => {
+            expect(typeMatcher.test(type)).toBe(true);
         });
     }
 }
