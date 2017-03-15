@@ -125,6 +125,7 @@ test('call _super correctly in each subclass', () => {
 
 
 test('calls overridden methods in constructor', () => {
+    //todo:_super can't bind this when calls as Subclass.prototype.foo.call(...);
     let Subclass = extend(Superclass, _super => ({
         constructor(){
             this.name = this.foo();
