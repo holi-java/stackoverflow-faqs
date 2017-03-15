@@ -16,3 +16,10 @@ test('failed', () => {
 test('call callback once', () => {
     expect(when(() => false).then(fail).unless(() => "bar")()).toBe("bar");
 });
+
+test('call callback bind context', () => {
+    let condition = when(() => true).then(function () {
+        return this.toUpperCase();
+    });
+    expect(condition.call("foo")).toBe("FOO");
+});

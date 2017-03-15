@@ -17,7 +17,6 @@ export function isFunction(it): boolean {
 }
 
 
-
 export type Predicate=() => boolean;
 export interface Condition {
     (...args: any[]): any;
@@ -26,10 +25,11 @@ export interface Condition {
 }
 export function when(predicate: Predicate): Condition {
     let $callback, $error;
+    $callback = $error = () => {};
 
     function condition(...args) {
         let execution = predicate() ? $callback : $error;
-        return execution(...args);
+        return execution.apply(this, args);
     }
 
     return copy(condition, [{
