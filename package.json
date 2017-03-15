@@ -1,6 +1,7 @@
 {
   "name": "stackoverflow-faqs",
   "version": "1.0.0",
+  "site": "http://stackoverflow.com/users/7607923/holi-java",
   "description": "answers of the site http://www.stackoverflow.com",
   "scripts": {
     "test": "jest @.*?[.]test[.]tsx?$",
