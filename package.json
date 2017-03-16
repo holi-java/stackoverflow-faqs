@@ -31,7 +31,7 @@
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/bootstrap",
-    "testRegex": "[.]test[.](tsx?|js)$",
+    "testRegex": "[.]test[.]tsx?$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
