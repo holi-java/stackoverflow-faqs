@@ -20,6 +20,7 @@
     "@types/jest": "^19.2.1",
     "@types/node": "^7.0.8",
     "@types/reflect-metadata": "0.0.5",
+    "core-decorators": "^0.15.0",
     "jest": "^19.0.2",
     "reflect-metadata": "^0.1.10",
     "ts-jest": "19.0.0",

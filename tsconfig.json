@@ -5,7 +5,8 @@
     "lib": [
       "dom",
       "es5",
-      "es2015.promise"
+      "es2015.promise",
+      "es2015.collection"
     ],
     "noImplicitAny": false,
     "strictNullChecks": true,
