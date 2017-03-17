@@ -108,10 +108,9 @@ describe("@lazy", () => {
     it("calling super @lazy fields", () => {
         let calls = 0;
         class Bar extends Foo {
-            get ref(): any {
+            get ref() {
                 calls++;
-                //todo:a typescript bug:should be call `super.ref` getter  instead of super.ref() correctly in typescript,but it can't
-                return (<any>super["ref"]).call(this);
+                return super.ref;
             };
         }
 
