@@ -1,8 +1,12 @@
-export default function lazy(target, name, {get:initializer, enumerable, configurable}: PropertyDescriptor={}): any {
+const {defineProperty, getPrototypeOf}=Object;
+export default function lazy(target, name, {get:initializer, enumerable, configurable, set:setter}: PropertyDescriptor={}): any {
+    const {constructor}=target;
     if (initializer === undefined) {
-        throw `@lazy can't be set as a property \`${name}\` on ${target.constructor.name} class, using a getter instead!`;
+        throw `@lazy can't be set as a property \`${name}\` on ${constructor.name} class, using a getter instead!`;
     }
-    const {defineProperty, getPrototypeOf}=Object;
+    if (setter) {
+        throw `@lazy can't be annotated with get ${name}() existing a setter on ${constructor.name} class!`;
+    }
 
     function set(that, value) {
         if (value === undefined) {
@@ -17,7 +21,6 @@ export default function lazy(target, name, {get:initializer, enumerable, configu
         return value;
     }
 
-    const {constructor}=target;
     return {
         get(){
             if (this === target) {

@@ -35,13 +35,13 @@ describe("@lazy", () => {
     });
 
     it("can't annotated with fields", () => {
-        const declaration = () => {
+        function lazyOnProperty() {
             class Bar {
                 @lazy bar: string = "bar";
             }
-        };
+        }
 
-        expect(declaration).toThrowError(/@lazy can't be set as a property `bar` on Bar class/);
+        expect(lazyOnProperty).toThrowError(/@lazy can't be set as a property `bar` on Bar class/);
     });
 
     it("get initializer via prototype", () => {
@@ -75,7 +75,7 @@ describe("@lazy", () => {
         class Bar extends Foo {
         }
 
-        const assertInitializerTo = it => {
+        const assertInitializerCallingWithCorrespondingContext = it => {
             let initializer: any = Bar.prototype.ref;
             let initializer2: any = Foo.prototype.ref;
             expect(typeof initializer).toBe("function");
@@ -83,13 +83,13 @@ describe("@lazy", () => {
             expect(initializer2.call(it)).toBe(it);
         };
 
-        assertInitializerTo(this);
+        assertInitializerCallingWithCorrespondingContext(this);
         let bar = new Bar();
-        assertInitializerTo({});
+        assertInitializerCallingWithCorrespondingContext({});
         expect(bar.value).toEqual("bar");
         expect(bar.value).toBe(bar.value);
         expect(bar.ref).toBe(bar);
-        assertInitializerTo(this);
+        assertInitializerCallingWithCorrespondingContext(this);
     });
 
 
@@ -119,5 +119,21 @@ describe("@lazy", () => {
 
         expect(bar.ref).toBe(bar);
         expect(calls).toBe(1);
+    });
+
+    it("throws errors if @lazy a getter that existing a setter", () => {
+        function lazyOnPropertyWithinSetter() {
+            class Bar {
+                @lazy
+                get bar() {
+                    return;
+                }
+
+                set bar(value) {
+                }
+            }
+        }
+
+        expect(lazyOnPropertyWithinSetter).toThrow(/@lazy can't be annotated with get bar\(\) existing a setter on Bar class/);
     });
 });
