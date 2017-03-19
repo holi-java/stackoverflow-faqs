@@ -4,7 +4,7 @@ issue("sort object keys",
 
 describe("sort object keys", () => {
 
-    function sort(o, comparator) {
+    function sort(o, comparator?) {
         return Object.keys(o).sort().reduce(function (o, key) {
             var it = o[key];
             delete o[key];
@@ -17,7 +17,7 @@ describe("sort object keys", () => {
         let o = {b: 2, a: 1};
 
         expect(Object.keys(o)).toEqual(["b", "a"]);
-        expect(sort(o, null)).toEqual({a: 1, b: 2});
+        expect(sort(o)).toEqual({a: 1, b: 2});
         expect(Object.keys(o)).toEqual(["a", "b"]);
     });
 
