@@ -1,26 +1,8 @@
+import {by} from "./libs/array";
+
 issue("array sort multi columns",
     "http://stackoverflow.com/questions/42872483/how-to-sort-a-very-large-data-array-by-multiple-parameter-in-javascript/42872724#42872724")
 describe("array sort multi columns", () => {
-
-
-    function by(columns) {
-        columns = typeof columns == "string" ? columns.split(",") : columns;
-
-        function compare(a, b) {
-            return a > b ? 1 : a < b ? -1 : 0;
-        }
-
-        return function (a, b) {
-            for (var i in columns) {
-                var p = columns[i];
-                var it = compare(a[p], b[p]);
-                if (it) {
-                    return it;
-                }
-            }
-            return 0;
-        }
-    }
 
     test("sort with single column", () => {
         let array = [{a: 1}, {a: 3}, {a: 2}];

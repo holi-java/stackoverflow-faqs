@@ -1,25 +1,8 @@
+import {by} from "./libs/array";
 issue("sort object keys",
     "http://stackoverflow.com/questions/42882979/how-to-sort-json-data-using-javascript/42883102#42883102")
 
 describe("sort object keys", () => {
-    function by(columns) {
-        columns = typeof columns == "string" ? columns.split(",") : columns;
-
-        function compare(a, b) {
-            return a > b ? 1 : a < b ? -1 : 0;
-        }
-
-        return function (a, b) {
-            for (var i in columns) {
-                var p = columns[i];
-                var it = compare(a[p], b[p]);
-                if (it) {
-                    return it;
-                }
-            }
-            return 0;
-        }
-    }
 
     function sort(o, comparator) {
         return Object.keys(o).sort().reduce(function (o, key) {
